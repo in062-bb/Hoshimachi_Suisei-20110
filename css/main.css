@@ -1,0 +1,491 @@
+.italiana-regular {
+    font-family: "Italiana", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+/* 撥放器區域的樣式 */
+#musicPlayer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #183a66cc;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-family: Italiana, sans-serif;
+    z-index: 1;
+}
+/* 進度條和音量控制樣式 */
+#progressBar, #volumeControl {
+    width: 100%;
+    margin: 8px 0;
+    appearance: none;
+    height: 5px;
+    border-radius: 5px;
+    background: #737493;
+}
+#progressBar::-webkit-slider-thumb, #volumeControl::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background-color: #4951e0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+#playPauseButton {
+    background-color: #1980ad;
+    color: rgb(255, 255, 255);
+    font-family: italiana, sans-serif;
+    font-size: 20PX;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#playPauseButton:hover {
+    background-color: #a2c9fa;
+}
+
+#main_menu{
+    background-color: rgb(58, 138, 187);
+    padding-left: 10px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    list-style: 0;
+    padding-left: 0;
+}
+#main_menu ul li{
+    display: inline-block;
+}
+#main_menu ul li a{
+    text-decoration: none;
+    font-size: 25PX;
+    color: rgb(247, 239, 255);
+    padding: 5px 25px;
+    display: block;
+    font-family: italiana, sans-serif;
+}
+#main_menu ul li a:hover{
+    color: rgb(31, 127, 182);
+    background-color: rgb(207, 249, 255);
+}
+#main_menu ul li.active a{
+    color: rgb(46, 41, 102);
+    -webkit-text-stroke: 2px rgb(46, 41, 102);
+    font-size: 40px;
+    font-family: italiana, sans-serif;
+}
+
+/* 漢堡選單樣式 */
+.hamburger-menu {
+    display: none; /* 預設隱藏 */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+}
+/* 導航選單樣式 */
+#menu-list {
+    display: flex; /* 預設為水平排列 */
+    list-style: none;
+    margin: 0;
+    padding: 3px 0;
+    align-items: center;
+}
+/* 響應式調整 */
+@media (max-width: 800px) { /* 可調整 px */
+    .hamburger-menu {
+        display: block; /* 在小螢幕顯示漢堡選單 */
+    }
+
+    #menu-list {
+        display: none; /* 隱藏導航選單 */
+        flex-direction: column; /* 縮小後改為垂直排列 */
+        position: absolute;
+        top: 60px; /* 根據頁首高度調整位置 */
+        left: 0;
+        background-color: rgba(102, 180, 228, 0.674);
+        width: 100%;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    #menu-list.active {
+        display: flex; /* 顯示選單 */
+    }
+
+    #menu-list li {
+        text-align: left; /* 漢堡選單中的選項對齊右側 */
+    }
+}
+
+
+#main_bg {
+    position: fixed;
+    display: block;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    width: 100%;
+    height: 100lvh;
+    background: no-repeat center url(../images/svg/bg_all_deco.svg);
+    background-size: cover;
+}
+
+
+h2{
+    color: #ffffff;
+    text-align: center;
+    font-family: italiana, sans-serif;
+}
+h4{
+    text-align: center;
+    color: #bfdbfa;
+    margin-top: -15px;
+}
+.talent_youtube{
+    display: inline-block;
+    background-color: #edffb3;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 600px;
+    margin: 100px auto 0 auto; 
+}
+
+
+.carousel-image {
+    display: none;
+    width: 100%;
+}
+
+.carousel-image.active {
+    display: block;
+}
+
+
+.status {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 82%;
+    margin: 0 auto;
+    line-height: 1em;
+    -moz-column-gap: 1.5em;
+    column-gap: 1.5em;
+    row-gap: 1.5em;
+    font-family: italiana, sans-serif;
+}
+.ul{
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+
+
+.boxx2 {
+    background-color: rgba(37, 112, 192, 0.625);
+    width: 90%; /* 預設為螢幕寬度的 90% */
+    max-width: 1200px; /* 最大寬度 */
+    margin: 15px auto;
+    padding: 25px;
+    border-radius: 20px;
+    font-family: italiana, sans-serif;
+    text-align: center;
+    letter-spacing: 2px; /* 字間距 */
+    display: flex; /* 將 boxx2 設定為 flex */
+    justify-content: center; /* 水平置中 */
+    align-items: center;
+    padding-bottom: 100px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.yt-thumbnail-container_big {
+    display: inline-block; /* 圍住圖片範圍 */
+    cursor: pointer;  
+    text-align: center; /* 中心對齊標題 */
+}
+.yt-thumbnail_big {
+    width: 400px; 
+    max-width: 350px; /* 控制縮圖的最大寬度 */
+    border-radius: 15px; 
+}
+/* 當滑鼠懸停時縮圖略微放大 */
+.yt-thumbnail-container_big img:hover {
+    transform: scale(1.05);
+}
+/* 設置影片縮圖樣式 */
+.yt-thumbnail-container_big img {
+    transition: transform 0.3s; /* 加入縮圖動畫效果 */
+    width: 100%; /* 讓縮圖自適應容器寬度 */
+    max-width: 350px; /* 控制縮圖的最大寬度 */
+    border-radius: 15px;
+}
+
+
+.vdo_name {
+    text-align: center;
+    color: #b6ccff;
+    letter-spacing: 2px;
+    font-size: 20px;
+    margin-top: -4px;
+}
+
+.yt-thumbnail-container {
+    display: inline-block; 
+    cursor: pointer;  
+}
+
+.yt-thumbnail {
+    width: 250px; 
+    height: auto; 
+    border-radius: 15px; 
+}
+
+.custom-hr {
+    width: 50%; /* 控制分隔線的長度，例如設為50% */
+    border: none; /* 移除預設的3D邊框樣式 */
+    border-top: 2px solid #e5efff; /* 設定線條顏色和粗細 */
+    margin: 20px auto; /* 置中並設置上下間距 */
+}
+
+.mus_01{
+    margin: 10px 10px;
+    padding: 10px 20px;
+}
+.mus_02{
+    margin: 10px 10px;
+    padding: 10px 20px;
+}
+.mus_03{
+    margin: 10px 10px;
+    padding: 10px 20px;
+}
+.vdo_name_2{
+    text-align: center;
+    color: #b6ccff;
+    letter-spacing: 1px;
+    font-size: 14px;
+    margin-top: -2px;
+}
+
+
+.carousel-container022 {
+    position: relative;
+    max-width: 1200px; /* 設定最大寬度 */
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 90%;
+    display: flex;
+    justify-content: center;  /* 使容器水平居中 */
+    z-index: 1;  /* 确保容器的层级 */
+    
+}
+
+/* 設置影片縮圖樣式 */
+.yt-thumbnail-container img {
+    width: 100%; /* 讓縮圖自適應容器寬度 */
+    max-width: 350px; /* 控制縮圖的最大寬度 */
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+
+/* 當滑鼠懸停時縮圖略微放大 */
+.yt-thumbnail-container img:hover {
+    transform: scale(1.05);
+}
+
+.mus_ro {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #1f169e9f;
+    padding-bottom: 100px;
+    justify-items: center;
+    padding-top: 45px;
+    z-index: -4;
+}
+
+section.scroll-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+section.scroll-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.top_omre{
+    margin-top: 100px;
+    margin-bottom: -110px;
+}
+
+.box3{
+    display: grid;
+    grid-gap: 5px; /* 將間距減少 */
+    margin: 80px 30px; /* 調整外邊距 */
+    padding: 0 10px;
+    font-family: italiana, sans-serif;
+    letter-spacing: 2px;
+    position: relative;
+}
+.logSi{
+    align-items: center;
+    width: 500px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* 确保居中对齐 */
+    margin-top: 20px;
+}
+.logSi2{
+    align-items: center;
+    width: 300px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* 确保居中对齐 */
+    margin-top: 80px;
+}
+.logSi3{
+    display: flex;
+    justify-content: center; /* 水平置中 */
+    height: 100vh; /* 設定高度以使其在整個頁面垂直置中 */
+}
+.logSi3 a img {
+    max-width: 100%; /* 設置圖片的寬度不超過容器寬度 */
+    height: auto; /* 保持圖片比例 */
+    transition: transform 0.3s;
+    border-radius: 15px;
+}
+
+.schduie01{
+    margin: 10px;
+    padding: 30px;
+    margin-top: -50px;
+}
+.sch01{
+    width: 550px; 
+    height: auto; 
+    border-radius: 15px; 
+}
+.sch_p{
+    text-align: center;
+    color: #10234e;
+    letter-spacing: 2px;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+.box4 {
+    display: flex; /* 改用 flexbox 排列 */
+    flex-direction: column; /* 預設垂直排列 */
+    align-items: center; /* 水平置中 */
+    justify-content: center; /* 垂直置中 */
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid;
+    width: 80%;
+    max-width: 1200px; /* 設定最大寬度 */
+    gap: 10px; /* 控制內部元素間距 */
+}
+/* Center alignment for box4 content */
+.box4-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.news_biptre{
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直居中 */
+    height: 100vh;           /* 容器高度設為全屏高度，讓內容垂直居中 */
+    margin-top: -80px;
+}
+.news_biptre002 {
+    max-width: 100%; /* 不超過容器寬度 */
+    height: auto;    /* 保持圖片比例 */
+    width: 900px;    /* 圖片寬度設置為800px */
+}
+.news_wir{
+    text-align: center;
+    color: #10234e;
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-top: -80px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.news_wir2{
+    text-align: center;
+    color: #10234e;
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-top: -10px;
+    padding-left: 65px;
+    padding-right: 65px;
+}
+.logSi4{
+    align-items: center;
+    width: 500px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* 确保居中对齐 */
+    margin-top: -70px;
+    z-index: -2;
+}
+.logSi5{
+    align-items: center;
+    width: 500px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* 确保居中对齐 */
+    margin-top: -70px;
+    z-index: -2;
+    opacity: 20%;
+}
+.log_holo{
+    height: auto;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* 确保居中对齐 */
+    margin-top: -5px;
+}
+.log_holo2{
+    position: relative;
+    max-width: 500px; /* 設定最大寬度 */
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 90%;
+    display: flex;
+    justify-content: center;  /* 使容器水平居中 */
+    padding-bottom: 70px;
+}
