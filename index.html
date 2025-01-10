@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hoshimachi-Suisei</title>
+        
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+        <!-- ▼ Favicon ▼-->
+        <link rel="shortcut icon" href="https://spectraofnova.hololivepro.com/wp-content/themes/spectra_of_nova/images/favicon_ogp/favicon.ico?20240829">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <style>
+            #loadingScreen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #141111;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                transition: opacity 7s ease, visibility 7s ease;
+                z-index: 9999;
+            }
+
+            .hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+            img {
+                position: relative;
+                width: 100%; /* 圖片寬度佔滿容器 */
+                height: auto; /* 保持圖片的比例 */
+            }
+            .img-1 {
+                position: relative; /* 設定容器為相對定位 */
+                width: 100%; /* 容器寬度填滿螢幕 */
+                height: 100vh; /* 容器高度設為視窗高度 */
+                overflow: hidden; /* 隱藏超出的部分 */
+            }
+            .img-1 img {
+                position: absolute;
+                top: 0;
+                left: -20%; /* Shifting 20% to the right */
+                width: 140%; /* Ensuring the image covers the full area */
+                transform-origin: top left;
+
+                height: auto; /* 高度自適應，保持圖片比例 */
+                min-height: 100vh; /* 確保高度至少填滿容器 */
+                object-fit: cover; /* 確保圖片覆蓋容器 */
+            }
+            body{
+                background-color: #183a66;
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin: 0;
+            }
+            h1{
+                font-family: italiana, sans-serif;
+                font-size: 35px;
+                color: #ffecb3;
+                text-align: center;
+            }
+            /* 調整 box1 和 sui_chan 的布局 */
+            .box1{
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* 默認為兩欄 */
+                grid-gap: 30px;
+                margin: 80px auto;
+                justify-content: center;
+                align-items: center;
+                
+                font-family: italiana, sans-serif;
+            }
+            
+            .ifo{
+                background-color: rgb(69, 158, 246);
+                width: 100%; /* 容器寬度為 100% */
+                padding: 30px 60px;
+                box-sizing: border-box; /* 確保 padding 計算在內 */
+                align-items: center;
+                height: auto;
+                border-radius: 20px;
+            }
+            .sui_chan{
+                display: flex;
+                justify-content: center; /* 讓圖片水平居中 */
+                align-items: center;
+                max-width: 100%; /* 防止圖片超過容器寬度 */
+                margin: 0 auto;
+                box-sizing: border-box; /* 確保內邊距不影響總寬度 */
+                
+                border: 50px;
+            }
+            /* 圖片設定 */
+            .carousel-container img {
+                width: 100%; /* 圖片寬度自適應容器 */
+                height: auto; /* 保持圖片的比例 */
+                max-width: 100%; /* 防止圖片超出容器 */
+            }
+            /* 左右切換按鈕樣式 */
+            .prev, .next {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: 16px;
+                margin-top: -22px;
+                color: white;
+                font-weight: bold;
+                font-size: 18px;
+                transition: 0.6s ease;
+                border-radius: 0 3px 3px 0;
+                user-select: none;
+            }
+            .prev { 
+                left: 0; 
+            }
+            .next {
+                right: 0;
+                border-radius: 3px 0 0 3px;
+            }
+
+            .out_box1{
+                
+                
+                margin: 45px; /* 留一點間隙 */
+                align-items: center;
+            }
+
+
+            .linkk{
+                font-size: 20px;
+                font-family: italiana, sans-serif;
+            }
+            a{
+                text-decoration: none;
+                color: #0f2164;
+            }
+            a:hover{
+                color: rgb(222, 219, 255);
+            }
+            /* 小螢幕佈局變更 */
+            @media screen and (max-width: 850px) {
+                .box1 {
+                    grid-template-columns: 1fr; /* 單欄佈局 */
+                    width: 70%;
+                    
+                }
+                .sui_chan {
+                    order: 1; /* 把圖片移到上方 */
+                    width: 75%; /* 可自行調整百分比 */
+                    aspect-ratio: 16/9; /* 維持等比例縮放 */
+                }  
+                .ifo {
+                    order: 2; /* 介紹文字在下方 */
+                    margin-top: 20px; /* 文字與圖片間距 */
+                    justify-content: center;
+                }
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id="loadingScreen">
+            <div id="open">
+                <img src="img/sui_load_01.jpg" alt="">
+            </div>
+        </div>
+        <!--
+        <nav id="main_menu">
+            <ul>
+                <li class="active"><a href="index.html">HOME</a></li>
+                <li ><a href="Music_video_01.html">MUSIC VIDEO</VIdeo></a></li>
+                <li><a href="news_01.html">NEWS</a></li>
+                <li><a href="Midogura_01.html">Midogura</a></li>
+                
+            </ul>
+        </nav>
+        -->
+        <nav id="main_menu">
+            <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
+            <ul id="menu-list">
+                <li class="active"><a href="index.html">HOME</a></li>
+                <li><a href="Music_video_01.html">MUSIC VIDEO</a></li>
+                <li><a href="news_01.html">NEWS</a></li>
+                <li><a href="Midogura_01.html">Midogura</a></li>
+            </ul>
+        </nav>
+        
+        <div class="img-1">
+            <img src="img/sui_001.jpg" alt="全寬圖片">
+        </div>
+        <br>
+        <h1>PROFILE</h1>
+        
+        <div class="out_box1">
+            
+            <div class="box1" data-aos="fade-down">
+                <div class="ifo" >
+                    <img src="img/sui_name_01.svg" alt="">
+                    <h2>星街彗星</h2>
+                    <h3>
+                        彗星のごとく現れたスターの原石！<br>
+                        バーチャルアイドルの星街すいせいでーす！
+                        <br>如彗星般出現的星之原石!  虛擬偶像星街彗星
+                    </h3>
+                    <p>
+                        歌とアイドルをこよなく愛するバーチャルアイドル。
+                        いつか武道館でライブをすることを夢見て活動している。
+                    </p>
+                    <p>
+                        以虛擬偶像為目標，以音樂為軸心活動的Vtuber，目標是武道館開唱。
+                    </p>
+                    <video src="https://hololive.hololivepro.com/wp-content/uploads/2021/05/0_すいせい.mp4" autoplay loop muted playsinline width="100%" height=auto></video></p>
+                    <h4>すいちゃんは——今日もかわいい！</h4>
+
+                    <ul class="status">
+                    <li><span class="title">誕生日</span><span>3月22日</span></li>
+                    <li><span class="title">身長</span><span>160cm</span></li>
+                    <li><span class="title">メイク担当</span><span>手島nari</span></li>
+                    <li><span class="title">ファンネーム</span><span>星詠み</span></li>
+                    </ul>
+                    <br>
+                    <div class="linkk">
+                        <h2>
+                            <a href="https://x.com/suisei_hosimati" target="_blank">X/TWITTER</a>
+                        </h2>
+                        <h2>
+                            <a href="https://youtube.com/@hoshimachisuisei?si=o4nhJ9bh79rNlQaD" target="_blank">YOUTUBE</a>
+                        </h2>
+                    </div>
+
+                </div>
+                <div class="sui_chan">
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="img/Hoshimachi-Suisei_pr-img_01.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="img/Hoshimachi-Suisei_pr-img_02-1044x2048.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="img/Hoshimachi-Suisei_pr-img_03-1044x2048.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="img/Hoshimachi-Suisei_pr-img_04-1044x2048.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="img/Hoshimachi-Suisei_pr-img_05-1044x2048.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="img/Hoshimachi-Suisei_pr-img_06-1044x2048.png" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="img/Hoshimachi-Suisei_pr-img_07.png" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+                
+        </div>
+
+        <div class="log_holo"></div>
+                <img src="img/Hololive_logo.svg.png" class="log_holo2" alt="">
+        </div>
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+        <!-- 撥放器區域 -->
+        <div id="musicPlayer">
+            <button id="playPauseButton">play music</button>
+            <input type="range" id="progressBar" value="0" min="0" max="100">
+            <label for="volumeControl">音量</label>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    
+        <!-- 音樂檔案 -->
+        <audio id="backgroundMusic" src="music/NEXT COLOR PLANET.mp3"></audio>
+    
+        <script>
+            // 取得各元素
+            const playPauseButton = document.getElementById('playPauseButton');
+            const progressBar = document.getElementById('progressBar');
+            const volumeControl = document.getElementById('volumeControl');
+            const backgroundMusic = document.getElementById('backgroundMusic');
+    
+            // 初始化音量
+            backgroundMusic.volume = volumeControl.value;
+    
+            // 撥放或暫停音樂的功能
+            playPauseButton.addEventListener('click', () => {
+                if (backgroundMusic.paused) {
+                    backgroundMusic.play();
+                    playPauseButton.textContent = 'PAUSE MUSIC';
+                } else {
+                    backgroundMusic.pause();
+                    playPauseButton.textContent = 'PLAY MUSIC';
+                }
+            });
+    
+            // 更新進度條
+            backgroundMusic.addEventListener('timeupdate', () => {
+                const progress = (backgroundMusic.currentTime / backgroundMusic.duration) * 100;
+                progressBar.value = progress;
+            });
+    
+            // 拖動進度條控制播放進度
+            progressBar.addEventListener('input', () => {
+                const seekTime = (progressBar.value / 100) * backgroundMusic.duration;
+                backgroundMusic.currentTime = seekTime;
+            });
+    
+            // 音量控制
+            volumeControl.addEventListener('input', () => {
+                backgroundMusic.volume = volumeControl.value;
+            });
+        </script>
+      <script>
+        // 等待網頁完全載入
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+    
+            // 加入隱藏樣式以觸發過渡效果
+            loadingScreen.classList.add('hidden');
+    
+            // 當過渡效果結束後，完全移除載入畫面
+            loadingScreen.addEventListener('transitionend', () => {
+                loadingScreen.style.display = 'none';
+            });
+        });
+    </script>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-image');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+    </script>
+
+    <script>
+        AOS.init({
+            duration:3000
+        });
+    </script>
+
+    <script>
+        function toggleMenu() {
+        const menuList = document.getElementById('menu-list');
+        menuList.classList.toggle('active');
+        }
+    </script>
+
+    </body>
+
+</html>

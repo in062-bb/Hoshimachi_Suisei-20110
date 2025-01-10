@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MUSIC VIDEO</title>
+
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+        <!-- ▼ Favicon ▼-->
+        <link rel="shortcut icon" href="https://spectraofnova.hololivepro.com/wp-content/themes/spectra_of_nova/images/favicon_ogp/favicon.ico?20240829">
+        
+        <style>
+            #loadingScreen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #000000;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                transition: opacity 5s ease, visibility 5s ease;
+                z-index: 9999;
+            }
+
+            .hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            /* 背景設置 */
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow-x: hidden;
+                font-family: Arial, sans-serif;
+            }
+            
+            .background-video {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;  /* 保持影片比例，裁切超出部分以填滿屏幕 */
+                z-index: -1;        /* 讓背景影片位於內容下方 */
+            }
+            /* 內容區 */
+            .content {
+                padding-top: 100vh; /* 初始顯示只有背景 */
+            }
+            section.scroll-hidden {
+                opacity: 0;
+                transform: translateY(50px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+            section.scroll-show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .mus_to3 {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); /* 預設三列佈局 */
+                grid-gap: 30px;
+                padding: 0 50px;
+                font-family: italiana, sans-serif;
+                letter-spacing: 2px;
+                justify-items: center; /* 使影片縮圖居中排列 */
+                margin-top: 50px;
+            }
+
+            /* 響應式調整 */
+            @media (max-width: 800px) { /* 當寬度小於 800px 時 */
+                .boxx2 {
+                    width: 100%; /* 滿版寬度 */
+                    padding: 15px; /* 減少內邊距 */
+                }
+
+                .mus_to3 {
+                    grid-template-columns: 1fr; /* 單列佈局 */
+                    grid-gap: 20px; /* 減少間距 */
+                }
+            }
+
+            /* 更窄螢幕的調整 */
+            @media (max-width: 500px) {
+                .boxx2 {
+                    width: 95%; /* 更窄時稍微減少外邊距 */
+                    padding: 10px;
+                }
+
+                .mus_to3 {
+                    grid-template-columns: 1fr; /* 保持單列 */
+                    grid-gap: 15px; /* 間距進一步縮小 */
+                }
+            }
+        </style>
+       
+
+    </head>
+    <body>
+        <div id="loadingScreen">
+            <div id="open">
+                <img src="img/sui_load_02.jpg" alt="">
+            </div>
+        </div>
+
+        <nav id="main_menu">
+            <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
+            <ul id="menu-list">
+                <li><a href="index.html">HOME</a></li>
+                <li class="active"><a href="Music_video_01.html">MUSIC VIDEO</a></li>
+                <li><a href="news_01.html">NEWS</a></li>
+                <li><a href="Midogura_01.html">Midogura</a></li>
+            </ul>
+        </nav>
+
+        <!-- 背景影片 -->
+        <video class="background-video" autoplay muted loop>
+            <source src="vido/mitizure_星街(official).mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div class="content">
+            <div class="boxx2">
+                <section class="scroll-hidden">
+                    <h2>—New Original Song—</h2>
+                    <a href="https://youtu.be/UYEZL13MUFk?si=HS9TSQPEQe2VzcJh" target="_blank" class="yt-thumbnail-container">
+                        <img src="https://img.youtube.com/vi/UYEZL13MUFk/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                    </a>                    
+                    <br>
+                    <p class="vdo_name">AWAKE</p>
+                    <br>
+                    <br>
+                    <br>
+                    <!--原創曲-->
+                    <section class="scroll-hidden">
+                        <h2>Original Songs</h2>
+                        <hr class="custom-hr">
+                    </section>
+
+                    <div class="mus_to3">
+                        <div class="mus_01">
+                            <a href="https://youtu.be/UmN7Fr_Kf-8?si=9ixrXFXrxOY8Kp_N" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/UmN7Fr_Kf-8/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>
+                            <br>
+                            <p class="vdo_name_2">ムーンライト</p>
+                        </div>
+                        <div class="mus_02">
+                            <a href="https://youtu.be/mRgslQ5Z-kU?si=h5p5iF60OcS-MPW2" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/mRgslQ5Z-kU/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>
+                            <br>
+                            <p class="vdo_name_2">ソワレ</p>
+                        </div>
+                        <div class="mus_03">
+                            <a href="https://youtu.be/8ZP5eqm4JqM?si=txxw1kEuODxoxyur" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/8ZP5eqm4JqM/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>
+                            <br>
+                            <p class="vdo_name_2">ビビデバ</p>
+                        </div>
+
+                        <div class="mus_01">
+                            <a href="https://youtu.be/mBuHQeL-OO8?si=fdix4TycfTPl_jKa" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/mBuHQeL-OO8/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>                                                       
+                            <br>
+                            <p class="vdo_name_2">TEMPLATE</p>
+                        </div>
+                        <div class="mus_02">
+                            <a href="https://youtu.be/4uqONJT6G-M?si=64XKfofxwpP-1lx1" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/4uqONJT6G-M/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>                            
+                            <br>
+                            <p class="vdo_name_2">みちづれ</p>
+                        </div>
+                        <div class="mus_03">
+                            <a href="https://youtu.be/a51VH9BYzZA?si=eZpOOW_Z32uuzk9j" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/a51VH9BYzZA/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>
+                            <br>
+                            <p class="vdo_name_2">Stellar Stellar</p>
+                        </div>
+
+                        <div class="mus_01">
+                            <a href="https://youtu.be/IqT6cHCT1TE?si=DOvvi2wrva48rRYi" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/IqT6cHCT1TE/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>                                                                                  
+                            <br>
+                            <p class="vdo_name_2">駆けろ</p>
+                        </div>
+                        <div class="mus_02">
+                            <a href="https://youtu.be/vQHVGXdcqEQ?si=ruZMs9sgfwz7J7rh" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/vQHVGXdcqEQ/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>                                                        
+                            <br>
+                            <p class="vdo_name_2">NEXT COLOR PLANET</p>
+                        </div>
+                        <div class="mus_03">
+                            <a href="https://youtu.be/zLak0dxBKpM?si=DBwnWmz5HzWEGAWp" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/zLak0dxBKpM/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>                            
+                            <br>
+                            <p class="vdo_name_2">天球、彗星は夜を跨いで</p>
+                        </div>
+                        <br>
+                    <!--翻唱歌曲-->
+                    </div>
+                    <section class="scroll-hidden">
+                        <h2>Cover Songs</h2>
+                        <hr class="custom-hr">
+                    </section>
+
+                    <div class="mus_to3">
+                    <div class="mus_01">
+                        <a href="https://youtu.be/zNb-UneSO5c?si=z6dQESUKecB3i5UU" target="_blank" class="yt-thumbnail-container">
+                            <img src="https://img.youtube.com/vi/zNb-UneSO5c/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                        </a>                                        
+                        <br>
+                        <p class="vdo_name_2">SHANTI</p>
+                        </div>
+                        <div class="mus_02">
+                            <a href="https://youtu.be/QkdDWaBtK04?si=xycPNEiybtbEFxjZ" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/QkdDWaBtK04/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>                                                        
+                        <br>
+                        <p class="vdo_name_2">きゅうくらりん</p>
+                        </div>
+                        <div class="mus_03">
+                            <a href="https://youtu.be/z2TBTXYiwvo?si=Mt2PislxurnMKeh0" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/z2TBTXYiwvo/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>                                                       
+                        <br>
+                        <p class="vdo_name_2">生き様</p>
+                    </div>
+                    <br>
+                    <!--其他歌曲-->
+                    </div>
+                    <section class="scroll-hidden">
+                        <h2>Collaboration Songs</h2>
+                        <hr class="custom-hr">
+                    </section>
+
+                    <div class="mus_to3">
+                        <div class="mus_01">
+                            <a href="https://youtu.be/HpZUkwUvv30?si=gAcrGuhn8N94uycw" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/HpZUkwUvv30/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>                 
+                            <br>
+                            <p class="vdo_name_2">なんもない</p>
+                            <p class="vdo_name_2">電影《成為星星的少女》主題曲</p>
+                        </div>
+                        <div class="mus_02">
+                            <a href="https://youtu.be/szONkV3l21g?si=IItA8EVcopZlQ8wI" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/szONkV3l21g/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>                            
+                            <br>
+                            <p class="vdo_name_2">みちづれ</p>
+                            <p class="vdo_name_2">THE FIRST TAKE</p>
+                        </div>
+                        <div class="mus_03">
+                            <a href="https://youtu.be/q-DpmU-XBnY?si=fEkLK_3rRibMDKIK" target="_blank" class="yt-thumbnail-container">
+                                <img src="https://img.youtube.com/vi/q-DpmU-XBnY/0.jpg" alt="YouTube Video Thumbnail" class="yt-thumbnail">
+                            </a>                            
+                            <br>
+                            <p class="vdo_name_2">教室に青</p>
+                            <p class="vdo_name_2">hololive × HoneyWorks</p>
+                        </div>
+                        <br>
+
+                        <!--專輯-->
+                        </div>
+                        <section class="scroll-hidden">
+                            <h2>Album</h2>
+                            <hr class="custom-hr">
+                        </section>
+                        <div class="mus_to3">
+                            <div class="mus_01">
+                                <a href="https://youtube.com/playlist?list=OLAK5uy_lMmU0s0Cy7jnLSImMkl_aLHFTnQ2K5WCE&si=bJ_RhRBTHMWvQfn-" target="_blank" class="yt-thumbnail-container">
+                                    <img src="img_album/Specter.png" alt="YouTube Playlist Thumbnail" class="yt-thumbnail">
+                                </a>                                                 
+                                <br>
+                                <p class="vdo_name_2">Specter</p>
+                            </div>
+                            <div class="mus_02">
+                                <a href="https://youtube.com/playlist?list=OLAK5uy_ndHa01w_Xnhuntill2-ZIUaVbs_LKqhU4&si=rO6EVxefj6fe21J6" target="_blank" class="yt-thumbnail-container">
+                                    <img src="img_album/Still Still Stellar.png" alt="YouTube Playlist Thumbnail" class="yt-thumbnail">
+                                </a>                                                          
+                                <br>
+                                <p class="vdo_name_2">Still Still Stellar</p>
+                            </div>
+                            <div class="mus_03">
+                                <a href="https://youtube.com/playlist?list=OLAK5uy_mILgn8FdOvbF6ICtDIW26relM3inNSTdw&si=aAQ70DEK0yIl-C91" target="_blank" class="yt-thumbnail-container">
+                                    <img src="img_album/TEMPLATE／Wicked.png" alt="YouTube Playlist Thumbnail" class="yt-thumbnail">
+                                </a>                                                            
+                                <br>
+                                <p class="vdo_name_2">TEMPLATE／Wicked</p>
+                            </div>
+                </section>
+                
+            </div>
+        </div>
+      
+        
+        <script src="script.js"></script>
+        
+        <!-- 撥放器區域 -->
+        <div id="musicPlayer">
+            <button id="playPauseButton">play music</button>
+            <input type="range" id="progressBar" value="0" min="0" max="100">
+            <label for="volumeControl">音量</label>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    
+        <!-- 音樂檔案 -->
+        <audio id="backgroundMusic" src="music/mitizure(official).mp3"></audio>
+    
+        <script>
+            // 取得各元素
+            const playPauseButton = document.getElementById('playPauseButton');
+            const progressBar = document.getElementById('progressBar');
+            const volumeControl = document.getElementById('volumeControl');
+            const backgroundMusic = document.getElementById('backgroundMusic');
+    
+            // 初始化音量
+            backgroundMusic.volume = volumeControl.value;
+    
+            // 撥放或暫停音樂的功能
+            playPauseButton.addEventListener('click', () => {
+                if (backgroundMusic.paused) {
+                    backgroundMusic.play();
+                    playPauseButton.textContent = 'PAUSE MUSIC';
+                } else {
+                    backgroundMusic.pause();
+                    playPauseButton.textContent = 'PLAY MUSIC';
+                }
+            });
+    
+            // 更新進度條
+            backgroundMusic.addEventListener('timeupdate', () => {
+                const progress = (backgroundMusic.currentTime / backgroundMusic.duration) * 100;
+                progressBar.value = progress;
+            });
+    
+            // 拖動進度條控制播放進度
+            progressBar.addEventListener('input', () => {
+                const seekTime = (progressBar.value / 100) * backgroundMusic.duration;
+                backgroundMusic.currentTime = seekTime;
+            });
+    
+            // 音量控制
+            volumeControl.addEventListener('input', () => {
+                backgroundMusic.volume = volumeControl.value;
+            });
+        </script>
+    <script>
+        // 等待網頁完全載入
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+    
+            // 加入隱藏樣式以觸發過渡效果
+            loadingScreen.classList.add('hidden');
+    
+            // 當過渡效果結束後，完全移除載入畫面
+            loadingScreen.addEventListener('transitionend', () => {
+                loadingScreen.style.display = 'none';
+            });
+        });
+    </script>
+      
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll(".scroll-hidden");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    console.log(entry);  // 確保觸發時會看到輸出
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("scroll-show");
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach((section) => {
+                observer.observe(section);
+            });
+        });
+    </script>
+    
+    <script>
+        function toggleMenu() {
+        const menuList = document.getElementById('menu-list');
+        menuList.classList.toggle('active');
+        }
+    </script>
+
+    </body>
+
+</html>

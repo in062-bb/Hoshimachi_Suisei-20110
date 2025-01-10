@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>news</title>
+        <style>
+            #loadingScreen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #edf5fb;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                transition: opacity 6s ease, visibility 6s ease;
+                z-index: 9999;
+            }
+
+            .hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+            img {
+                position: relative;
+                width: 100%; /* 圖片寬度佔滿容器 */
+                height: auto; /* 保持圖片的比例 */
+            }
+            .img-1 {
+                position: relative; /* 設定容器為相對定位 */
+                width: 100%; /* 容器寬度填滿螢幕 */
+                height: 100vh; /* 容器高度設為視窗高度 */
+                overflow: hidden; /* 隱藏超出的部分 */
+            }
+            .img-1 img {
+                position: absolute;
+                top: 0;
+                left: -20%; /* Shifting 20% to the right */
+                width: 140%; /* Ensuring the image covers the full area */
+                transform-origin: top left;
+
+                height: auto; /* 高度自適應，保持圖片比例 */
+                min-height: 100vh; /* 確保高度至少填滿容器 */
+                object-fit: cover; /* 確保圖片覆蓋容器 */
+            }
+            body{
+                background-color: #e8f2ff;
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin: 0;
+            }
+            h1{
+                font-family: italiana, sans-serif;
+                font-size: 40px;
+                color: #28316b;
+                text-align: center;
+                margin-top: -2px;
+            }
+            .mus_to3 {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); /* 預設三列佈局 */
+                grid-gap: 30px;
+                padding: 0 50px;
+                font-family: italiana, sans-serif;
+                letter-spacing: 2px;
+                justify-items: center; /* 使影片縮圖居中排列 */
+                margin-top: 50px;
+            }
+            a{
+                text-decoration: none;
+                color: #213069;
+            }
+            a:hover{
+                color: rgb(230, 190, 131);
+            }
+            /* 響應式調整 */
+            @media (max-width: 500px) {
+                .mus_to3 {
+                    padding: 0 10px; /* 減少內邊距，避免偏移 */
+                    grid-template-columns: 1fr; /* 單列佈局 */
+                    grid-gap: 15px; /* 減少間距 */
+                }
+            }
+
+            @media (max-width: 800px) { /* 當寬度小於 800px 時 */
+                .box3 {
+                    width: 100%; /* 滿版寬度 */
+                    padding: 15px; /* 減少內邊距 */
+                }
+
+                .mus_to3 {
+                    grid-template-columns: 1fr; /* 單列佈局 */
+                    grid-gap: 20px; /* 減少間距 */
+                }
+            }
+
+            /* 調整 .box4 裡的圖片對齊方式 */
+            .box4 img {
+                display: block; /* 圖片作為區塊元素 */
+                max-width: 100%; /* 圖片寬度跟隨容器 */
+                height: auto; /* 保持圖片比例 */
+                object-fit: contain; /* 確保圖片縮小時不會被裁剪 */
+                object-position: top center; /* 對齊圖片頂端的中間 */
+                margin: 0 auto; /* 水平置中 */
+            }
+            
+            /* 更窄螢幕的調整 */
+            @media (max-width: 500px) {
+                .box3 {
+                    width: 95%; /* 更窄時稍微減少外邊距 */
+                    padding: 10px;
+                }
+
+                .mus_to3 {
+                    grid-template-columns: 1fr; /* 保持單列 */
+                    grid-gap: 15px; /* 間距進一步縮小 */
+                }
+            }
+            /* 響應式調整：針對手機寬度進行優化 */
+            @media (max-width: 500px) {
+                .box4 {
+                    flex-direction: column; /* 保持垂直排列 */
+                    gap: 5px; /* 減少內部間距 */
+                }
+
+                .box4 img {
+                    max-width: 100%; /* 圖片寬度自適應 */
+                    height: auto; /* 保持比例縮放 */
+                }
+
+                .box4 h1 {
+                    font-size: 20px; /* 縮小文字大小 */
+                    text-align: center; /* 文字居中 */
+                    margin: 5px 0; /* 減少上下間距 */
+                }
+            }
+        </style>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+        <!-- ▼ Favicon ▼-->
+        <link rel="shortcut icon" href="https://spectraofnova.hololivepro.com/wp-content/themes/spectra_of_nova/images/favicon_ogp/favicon.ico?20240829">
+        
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    </head>
+    <body>
+        <div id="loadingScreen">
+            <div id="open">
+                <img src="img/open_star_logo_sing2_2.png" alt="">
+            </div>
+        </div>
+
+        <nav id="main_menu">
+            <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
+            <ul id="menu-list">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="Music_video_01.html">MUSIC VIDEO</a></li>
+                <li class="active"><a href="news_01.html">NEWS</a></li>
+                <li><a href="Midogura_01.html">Midogura</a></li>
+            </ul>
+        </nav>
+
+        <div class="img-1">
+            <img src="img/kv_top_pc_high .jpg" alt="全寬圖片">
+        </div>
+
+        <div class="box3" data-aos="fade-up">
+            <div class="logSi">
+                <img src="img/sui_logo_spectra of nova_.png" alt="">
+            </div>
+            <h1>Hoshimachi Suisei Live Tour 2024 ""Spectra of Nova""</h1>
+    
+            <div class="logSi2">
+                <img src="img/sui_schdule_spectra of nova_.png" alt="">
+            </div>
+    
+            <div class="mus_to3">
+                <div class="schduie01">
+                    <img src="img/Spectra of Nova_01.webp" alt="">
+                    <p class="sch_p">11 月 14 日－埼玉(埼玉超級競技場)</p>
+                </div>
+                <div class="schduie01">
+                    <img src="img/Spectra of Nova_02.webp" alt="">
+                    <p class="sch_p">12 月 10 日－大阪(舞洲圓形體育館) </p>
+                </div>
+                <div class="schduie01">
+                    <img src="img/Spectra of Nova_03.webp" alt="">
+                    <p class="sch_p">12 月 28 日－福岡(福岡太陽宮)</p>
+                </div >
+                
+            </div>
+            <h1>
+                <a href="https://spectraofnova.hololivepro.com/tickets/">BUY TICKETS</a>
+            </h1>
+            <!--
+            <div class="logSi3">
+                <a href="https://spectraofnova.hololivepro.com/tickets/" target="_blank">
+                    <img src="img/sui_Spectra of Nova_tickets.png" alt="tickets" style="width:200px; height:auto;">
+                </a>
+            </div>
+            -->
+        </div>
+
+        <div class="box4" data-aos="zoom-in-up">
+            <h1>
+                「星街すいせい」初の日本武道館公演
+            </h1>
+            <h1>Hoshimachi Suisei 日本武道館 Live “SuperNova” 開催決定</h1>
+            <div class="news_biptre">
+                <img src="img/sui_SuperNova.jfif" class="news_biptre002" alt="">
+            </div>
+            <!--
+            <p class="news_wir">
+                VTuber 經紀公司 hololive 零期生「星街彗星」宣布將登上日本武道館舉辦個人演唱會，成為 hololive 首位踏上武道館第一人。
+            </p>
+            -->
+            <div class="logSi4">
+                <img src="img/supernova_date_02.png" class="news_biptre002" alt="">
+            </div>
+            <h1>
+                <a href="https://supernova.hololivepro.com/tickets/">BUY TICKETS</a>
+            </h1>
+            
+        </div>
+
+        <div class="box4" data-aos="zoom-in">
+            <h1>
+                星街すいせい 3rd Album
+            </h1>
+            <h1>『新星目録』</h1>
+            <div class="news_biptre">
+                <img src="img_album/sui_new str.jfif" class="news_biptre002" alt="">
+            </div>
+            <p class="news_wir">
+                ミュージックシーンに「革命」を巻き起こす星街すいせい待望の3rdアルバム！<br>
+                「それぞれの革命」をテーマに、「ビビデバ」「ムーンライト」などの既発曲に加え、Giga & TeddyLoid書き下ろしの「AWAKE」など意欲作を散りばめた挑戦的な作品に。
+            </p>
+            <p class="news_wir2">
+                《新星目錄》以「各自的革命」（それぞれの革命）為主題，除收錄目前 YT 點閱即將破億的舞曲〈ビビデバ〉和澀谷街頭曝光的〈ムーンライト〉等已發行曲目外，還收錄了由 Giga & TeddyLoid 作曲編曲、草野華余子作詞的新歌〈AWAKE〉等不同風格的作品。
+            </p>
+            <div class="logSi5">
+                <img src="img_album/SuperNova_album_logo_03_.png" alt="">
+            </div>
+            <h1>
+                <a href="https://cover.lnk.to/SHINSEIMOKUROKU">Pre-order Album</a>
+            </h1>
+            
+        </div>
+        <div class="box4" data-aos="zoom-in">
+            
+            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">✨🎍HAPPY NEW YEAR🎍✨ <a href="https://t.co/fdFXXZNOyH">pic.twitter.com/fdFXXZNOyH</a></p>&mdash; 星街すいせい☄️ホロライブ０期生 (@suisei_hosimati) <a href="https://twitter.com/suisei_hosimati/status/1874109545045516545?ref_src=twsrc%5Etfw">December 31, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <h1>✨🎍HAPPY NEW YEAR🎍✨</h1>
+            <hr>
+            <hr>
+        </div>
+        
+        
+        <!-- 撥放器區域 -->
+        <div id="musicPlayer">
+            <button id="playPauseButton">play music</button>
+            <input type="range" id="progressBar" value="0" min="0" max="100">
+            <label for="volumeControl">音量</label>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    
+        <!-- 音樂檔案 -->
+        <audio id="backgroundMusic" src="music/天球_suisei ha yoru wo mata i de（Instrumental）.mp3"></audio>
+    
+        <script>
+            // 取得各元素
+            const playPauseButton = document.getElementById('playPauseButton');
+            const progressBar = document.getElementById('progressBar');
+            const volumeControl = document.getElementById('volumeControl');
+            const backgroundMusic = document.getElementById('backgroundMusic');
+    
+            // 初始化音量
+            backgroundMusic.volume = volumeControl.value;
+    
+            // 撥放或暫停音樂的功能
+            playPauseButton.addEventListener('click', () => {
+                if (backgroundMusic.paused) {
+                    backgroundMusic.play();
+                    playPauseButton.textContent = 'PAUSE MUSIC';
+                } else {
+                    backgroundMusic.pause();
+                    playPauseButton.textContent = 'PLAY MUSIC';
+                }
+            });
+    
+            // 更新進度條
+            backgroundMusic.addEventListener('timeupdate', () => {
+                const progress = (backgroundMusic.currentTime / backgroundMusic.duration) * 100;
+                progressBar.value = progress;
+            });
+    
+            // 拖動進度條控制播放進度
+            progressBar.addEventListener('input', () => {
+                const seekTime = (progressBar.value / 100) * backgroundMusic.duration;
+                backgroundMusic.currentTime = seekTime;
+            });
+    
+            // 音量控制
+            volumeControl.addEventListener('input', () => {
+                backgroundMusic.volume = volumeControl.value;
+            });
+        </script>
+      <script>
+        // 等待網頁完全載入
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+    
+            // 加入隱藏樣式以觸發過渡效果
+            loadingScreen.classList.add('hidden');
+    
+            // 當過渡效果結束後，完全移除載入畫面
+            loadingScreen.addEventListener('transitionend', () => {
+                loadingScreen.style.display = 'none';
+            });
+        });
+    </script>
+
+    <script>
+        AOS.init({
+            duration:1000
+        });
+    </script>
+
+    <script>
+        function toggleMenu() {
+        const menuList = document.getElementById('menu-list');
+        menuList.classList.toggle('active');
+        }
+    </script>
+
+    </body>
+</html>
